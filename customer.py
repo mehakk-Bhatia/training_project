@@ -1,7 +1,7 @@
 class Customer:
 
-   
-    def __init__(self, id=None, name=None, phone=None, email=None, created_on=None, remarks=None, points=100, type=1):
+    # Constructor
+    def __init__(self, id=None, name=None, phone=None, email=None, created_on=None, remarks=None, points=None, type=None):
         self.id = id
         self.name = name
         self.phone = phone
@@ -17,7 +17,9 @@ class Customer:
                "('{name}', '{phone}', '{email}', '{remarks}');".format_map(vars(self))
 
     def update_sql(self):
-        return ""
+        query = "update Customer set name = '{name}', " \
+               "phone='{phone}', email= '{email}' , remarks= '{remarks}' where id = {id}".format_map(vars(self))
+        return query
 
     def delete_sql(self):
         return "delete from Customer where id = {}".format(self.id)
